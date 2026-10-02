@@ -5,15 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const screen2 = document.getElementById('screen-2');
     const screen3 = document.getElementById('screen-3');
 
-    const selectLocationBtn = document.getElementById('select-location');
-    const selectBeachBtn = document.getElementById('select-beach');
-    const selectCafeBtn = document.getElementById('select-cafe');
+    const selectGoa = document.getElementById('select-goa');
+    const selectGoaBeach = document.getElementById('select-goa-beach');
+    const selectGoaCafe = document.getElementById('select-goa-cafe');
     const step2 = document.getElementById('step-2');
     
     const startRecallBtn = document.getElementById('start-recall-btn');
     const backToStandard = document.getElementById('back-to-standard');
     
-    const openJourneyBtn = document.getElementById('open-visual-journey');
     const backTo0 = document.getElementById('back-to-0');
 
     const askAiBtn = document.getElementById('ask-ai-btn');
@@ -41,35 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen(screenMainSearch);
     });
 
-    function handleLocationSelection(btn) {
+    function handleCueSelection(btn) {
         document.querySelectorAll('.cue-card').forEach(c => c.classList.remove('selected'));
         btn.classList.add('selected');
-        
         step2.classList.remove('hidden');
         
         setTimeout(() => {
             document.querySelector('.guided-recall-content').scrollTo({
-                top: 500,
+                top: 250,
                 behavior: 'smooth'
             });
         }, 50);
     }
 
-    if (selectLocationBtn) {
-        selectLocationBtn.addEventListener('click', () => handleLocationSelection(selectLocationBtn));
-    }
-
-    if (selectBeachBtn) {
-        selectBeachBtn.addEventListener('click', () => {
-            showScreen(screen1);
-        });
-    }
-
-    if (selectCafeBtn) {
-        selectCafeBtn.addEventListener('click', () => {
-            showScreen(screen1);
-        });
-    }
+    if (selectGoa) selectGoa.addEventListener('click', () => handleCueSelection(selectGoa));
+    if (selectGoaBeach) selectGoaBeach.addEventListener('click', () => showScreen(screen1));
+    if (selectGoaCafe) selectGoaCafe.addEventListener('click', () => showScreen(screen1));
 
     backTo0.addEventListener('click', () => {
         showScreen(screen0);
