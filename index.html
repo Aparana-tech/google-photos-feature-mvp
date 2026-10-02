@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Photos - Visual Journey Track</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <div id="app-container">
+        <!-- New Screen: Main Search / Home -->
+        <section id="screen-main-search" class="screen active">
+            <header>
+                <div class="header-text" style="width: 100%;">
+                    <h1 style="font-size: 24px; font-weight: 500;">Search</h1>
+                </div>
+                <button class="icon-btn"><span class="material-symbols-outlined">account_circle</span></button>
+            </header>
+            
+            <div class="content-scroll" style="padding-bottom: 90px;">
+                <div class="search-input-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <p>Search your photos</p>
+                </div>
+
+                <!-- Contextual Recovery CTA -->
+                <div class="recovery-cta-card" id="start-recall-btn">
+                    <div class="recovery-cta-text">
+                        <h3>Can't find a photo from a past trip?</h3>
+                        <p>Find it without remembering the exact date.</p>
+                    </div>
+                    <button class="primary-btn small-btn"><span class="material-symbols-outlined">search_spark</span> Find trip photos</button>
+                </div>
+
+                <!-- Standard Search Grid (Dummy) -->
+                <div class="section-title">
+                    <h2>People & Pets</h2>
+                </div>
+                <div class="standard-circles">
+                    <img src="assets/dog_portrait.jpg" class="circle-img">
+                    <img src="assets/goa_church.jpg" class="circle-img">
+                    <img src="assets/goa_hotel.jpg" class="circle-img">
+                    <img src="assets/dog_portrait.jpg" class="circle-img">
+                </div>
+
+                <div class="section-title">
+                    <h2>Places</h2>
+                </div>
+                <div class="standard-rects">
+                    <img src="assets/goa_beach.jpg" class="rect-img">
+                    <img src="assets/mountain_landscape.jpg" class="rect-img">
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-item">
+                    <span class="material-symbols-outlined">photo_library</span>
+                    <span>Photos</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-outlined">photo_albums</span>
+                    <span>Collections</span>
+                </div>
+                <div class="nav-item active">
+                    <span class="material-symbols-outlined">search</span>
+                    <span>Search</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 0: Visual Guided Recall -->
+        <section id="screen-0" class="screen">
+            <header>
+                <button class="icon-btn" id="back-to-standard"><span class="material-symbols-outlined">arrow_back</span></button>
+                <div class="header-text" style="text-align: center; width: 100%; margin: 0; padding-right: 40px;">
+                    <h1 style="font-size: 16px; font-weight: 600;">Find trip photos</h1>
+                </div>
+            </header>
+            
+            <div class="guided-recall-content">
+                <div id="step-1" class="recall-step">
+                    <h2>Think about the trip &mdash; what do you remember?</h2>
+                    <div class="cues-grid">
+                        <div class="cue-card" id="select-beach">
+                            <img src="assets/goa_beach.jpg" alt="Beach">
+                            <div class="cue-overlay"><span>Beach</span></div>
+                        </div>
+                        <div class="cue-card" id="select-cafe">
+                            <img src="assets/goa_cafe.jpg" alt="Café">
+                            <div class="cue-overlay"><span>Café</span></div>
+                        </div>
+                        <div class="cue-card disabled-cue">
+                            <img src="assets/mountain_landscape.jpg" alt="Mountains">
+                            <div class="cue-overlay"><span>Mountains</span></div>
+                        </div>
+                        <div class="cue-card disabled-cue">
+                            <img src="assets/goa_beach.jpg" alt="Sunset">
+                            <div class="cue-overlay"><span>Sunset</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-2" class="recall-step hidden" style="margin-top: 40px;">
+                    <h2>Which of these looks familiar?</h2>
+                    <div class="memory-clusters-list">
+                        <div class="cluster-card" id="open-visual-journey">
+                            <img src="assets/goa_beach.jpg" alt="Goa">
+                            <div class="cluster-info">
+                                <h3>Goa</h3>
+                                <p>Beach &middot; Café &middot; Friends</p>
+                            </div>
+                        </div>
+                        <div class="cluster-card disabled-cluster">
+                            <img src="assets/manali_snow.jpg" alt="Manali">
+                            <div class="cluster-info">
+                                <h3>Manali</h3>
+                                <p>Mountains &middot; Snow &middot; Hotel</p>
+                            </div>
+                        </div>
+                        <div class="cluster-card disabled-cluster">
+                            <img src="assets/kerala_backwaters.jpg" alt="Kerala">
+                            <div class="cluster-info">
+                                <h3>Kerala</h3>
+                                <p>Backwaters &middot; Boat &middot; Family</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 1: Visual Journey -->
+        <section id="screen-1" class="screen">
+            <header>
+                <button class="icon-btn" id="back-to-0"><span class="material-symbols-outlined">arrow_back</span></button>
+                <div class="header-text">
+                    <h1>Goa Trip</h1>
+                    <p>342 photos &middot; 5 days</p>
+                </div>
+                <button class="icon-btn"><span class="material-symbols-outlined">more_vert</span></button>
+            </header>
+
+            <div class="content-scroll">
+                <div class="section-title">
+                    <span class="sparkle-icon material-symbols-outlined">temp_preferences_custom</span>
+                    <h2>Your Visual Journey</h2>
+                </div>
+                <p class="supporting-text">AI selected these moments to help you recognize your trip faster.</p>
+                
+                <div class="hero-carousel">
+                    <img src="assets/goa_beach.jpg" alt="Beach" class="hero-photo">
+                    <img src="assets/goa_church.jpg" alt="Landmark" class="hero-photo">
+                    <img src="assets/goa_hotel.jpg" alt="Hotel" class="hero-photo">
+                </div>
+
+                <div class="trip-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-day">DAY 1 — ARRIVAL</div>
+                        <div class="timeline-thumbs">
+                            <img src="assets/goa_hotel.jpg" alt="Thumb">
+                            <img src="assets/goa_beach.jpg" alt="Thumb">
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">DAY 2 — NORTH GOA</div>
+                        <div class="timeline-thumbs">
+                            <img src="assets/goa_church.jpg" alt="Thumb">
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">DAY 3 — OLD GOA</div>
+                        <div class="timeline-thumbs">
+                            <div class="thumb-placeholder"></div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">DAY 4 — BEACH DAY</div>
+                        <div class="timeline-thumbs">
+                            <img src="assets/goa_beach.jpg" alt="Thumb">
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">DAY 5 — DEPARTURE</div>
+                        <div class="timeline-thumbs">
+                            <div class="thumb-placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="text-btn view-all-btn">View all 342 photos</button>
+            </div>
+
+            <div class="bottom-action-bar">
+                <button id="ask-ai-btn" class="ai-fab-btn">
+                    <span class="material-symbols-outlined">search_spark</span>
+                    Find a specific photo
+                </button>
+            </div>
+        </section>
+
+        <!-- Screen 2: Ask AI -->
+        <section id="screen-2" class="screen">
+            <header>
+                <button class="icon-btn" id="back-to-1"><span class="material-symbols-outlined">close</span></button>
+            </header>
+            
+            <div class="ask-ai-content">
+                <span class="large-sparkle material-symbols-outlined">search_spark</span>
+                <h1>Ask about your Goa Trip</h1>
+                <p class="supporting-text">Describe the photo you remember. You don't need the exact date.</p>
+                
+                <div class="suggestion-chips">
+                    <button class="chip">Café with my friends</button>
+                    <button class="chip">Beach sunset</button>
+                    <button class="chip">Blue shirt</button>
+                    <button class="chip">Hotel room</button>
+                    <button class="chip">Dinner photo</button>
+                </div>
+            </div>
+
+            <div class="search-input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="ai-search-input" placeholder="Describe the photo you're looking for...">
+                    <button id="submit-search" class="icon-btn submit-btn"><span class="material-symbols-outlined">send</span></button>
+                </div>
+            </div>
+
+            <div id="loading-state" class="hidden">
+                <div class="spinner"></div>
+                <p>Searching your Goa Trip...</p>
+            </div>
+        </section>
+
+        <!-- Screen 3: Results -->
+        <section id="screen-3" class="screen">
+            <header>
+                <button class="icon-btn" id="back-to-2"><span class="material-symbols-outlined">arrow_back</span></button>
+                <div class="header-text">
+                    <h1>Here's what I found</h1>
+                </div>
+            </header>
+
+            <div class="result-content">
+                <div class="result-card">
+                    <img src="assets/goa_cafe.jpg" alt="Result photo" class="result-photo">
+                    <div class="context-evidence">
+                        <span class="material-symbols-outlined">location_on</span> Goa &middot; Café &middot; Dinner &middot; Friends
+                    </div>
+                </div>
+                
+                <p class="supporting-text center-text">Best match based on your trip context and visual details.</p>
+
+                <div class="feedback-section">
+                    <h3>Is this the photo you meant?</h3>
+                    <div class="feedback-actions">
+                        <button class="primary-btn"><span class="material-symbols-outlined">check</span> Yes, this is it</button>
+                        <button id="refine-btn" class="secondary-btn"><span class="material-symbols-outlined">tune</span> Refine search</button>
+                    </div>
+                </div>
+                
+                <div id="refinement-area" class="hidden">
+                    <div class="chat-bubble user-bubble">
+                        <p>No, the one where we were sitting outside.</p>
+                    </div>
+                    <div class="chat-bubble ai-bubble">
+                        <p>Got it — looking for an outdoor café photo.</p>
+                    </div>
+                    
+                    <div class="refinement-chips">
+                        <button class="chip active">Outside</button>
+                        <button class="chip">At night</button>
+                        <button class="chip active">With friends</button>
+                        <button class="chip">Food visible</button>
+                        <button class="chip">Beach nearby</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

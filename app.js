@@ -1,0 +1,125 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const screenMainSearch = document.getElementById('screen-main-search');
+    const screen0 = document.getElementById('screen-0');
+    const screen1 = document.getElementById('screen-1');
+    const screen2 = document.getElementById('screen-2');
+    const screen3 = document.getElementById('screen-3');
+
+    const selectBeachBtn = document.getElementById('select-beach');
+    const selectCafeBtn = document.getElementById('select-cafe');
+    const step2 = document.getElementById('step-2');
+    
+    const startRecallBtn = document.getElementById('start-recall-btn');
+    const backToStandard = document.getElementById('back-to-standard');
+    
+    const openJourneyBtn = document.getElementById('open-visual-journey');
+    const backTo0 = document.getElementById('back-to-0');
+
+    const askAiBtn = document.getElementById('ask-ai-btn');
+    const backTo1 = document.getElementById('back-to-1');
+    const submitSearch = document.getElementById('submit-search');
+    const searchInput = document.getElementById('ai-search-input');
+    const loadingState = document.getElementById('loading-state');
+    
+    const backTo2 = document.getElementById('back-to-2');
+    const refineBtn = document.getElementById('refine-btn');
+    const refinementArea = document.getElementById('refinement-area');
+    const chips = document.querySelectorAll('.chip');
+
+    // Navigation
+    function showScreen(screen) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        screen.classList.add('active');
+    }
+
+    startRecallBtn.addEventListener('click', () => {
+        showScreen(screen0);
+    });
+
+    backToStandard.addEventListener('click', () => {
+        showScreen(screenMainSearch);
+    });
+
+    function handleCueSelection(btn) {
+        // Deselect others (optional, or allow multiple. Let's do simple select)
+        selectBeachBtn.classList.remove('selected');
+        selectCafeBtn.classList.remove('selected');
+        
+        btn.classList.add('selected');
+        step2.classList.remove('hidden');
+        // Scroll down to step 2 smoothly
+        setTimeout(() => {
+            document.querySelector('.guided-recall-content').scrollTo({
+                top: 250,
+                behavior: 'smooth'
+            });
+        }, 50);
+    }
+
+    selectBeachBtn.addEventListener('click', () => handleCueSelection(selectBeachBtn));
+    selectCafeBtn.addEventListener('click', () => handleCueSelection(selectCafeBtn));
+
+    openJourneyBtn.addEventListener('click', () => {
+        showScreen(screen1);
+    });
+
+    backTo0.addEventListener('click', () => {
+        showScreen(screen0);
+    });
+
+    askAiBtn.addEventListener('click', () => {
+        showScreen(screen2);
+    });
+
+    backTo1.addEventListener('click', () => {
+        showScreen(screen1);
+    });
+
+    // Handle chips click
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            if (chip.closest('#screen-2')) {
+                searchInput.value = chip.textContent;
+            } else {
+                chip.classList.toggle('active');
+            }
+        });
+    });
+
+    // Handle search submission
+    function performSearch() {
+        if (!searchInput.value.trim()) return;
+        
+        loadingState.classList.remove('hidden');
+        
+        setTimeout(() => {
+            loadingState.classList.add('hidden');
+            showScreen(screen3);
+            searchInput.value = ''; // Reset for next time
+        }, 1500); // 1.5s artificial delay for effect
+    }
+
+    submitSearch.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+
+    // Screen 3 interactions
+    backTo2.addEventListener('click', () => {
+        showScreen(screen2);
+    });
+
+    refineBtn.addEventListener('click', () => {
+        refinementArea.classList.remove('hidden');
+        refineBtn.style.display = 'none'; // hide refine button after clicking
+        
+        // Scroll to bottom
+        setTimeout(() => {
+            const resultContent = screen3.querySelector('.result-content');
+            resultContent.scrollTo({
+                top: resultContent.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 50);
+    });
+});
