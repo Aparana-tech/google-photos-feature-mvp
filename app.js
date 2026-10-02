@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const screen2 = document.getElementById('screen-2');
     const screen3 = document.getElementById('screen-3');
 
+    const selectLocationBtn = document.getElementById('select-location');
     const selectBeachBtn = document.getElementById('select-beach');
     const selectCafeBtn = document.getElementById('select-cafe');
     const step2 = document.getElementById('step-2');
@@ -40,28 +41,35 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen(screenMainSearch);
     });
 
-    function handleCueSelection(btn) {
-        // Deselect others (optional, or allow multiple. Let's do simple select)
-        selectBeachBtn.classList.remove('selected');
-        selectCafeBtn.classList.remove('selected');
-        
+    function handleLocationSelection(btn) {
+        document.querySelectorAll('.cue-card').forEach(c => c.classList.remove('selected'));
         btn.classList.add('selected');
+        
         step2.classList.remove('hidden');
-        // Scroll down to step 2 smoothly
+        
         setTimeout(() => {
             document.querySelector('.guided-recall-content').scrollTo({
-                top: 250,
+                top: 500,
                 behavior: 'smooth'
             });
         }, 50);
     }
 
-    selectBeachBtn.addEventListener('click', () => handleCueSelection(selectBeachBtn));
-    selectCafeBtn.addEventListener('click', () => handleCueSelection(selectCafeBtn));
+    if (selectLocationBtn) {
+        selectLocationBtn.addEventListener('click', () => handleLocationSelection(selectLocationBtn));
+    }
 
-    openJourneyBtn.addEventListener('click', () => {
-        showScreen(screen1);
-    });
+    if (selectBeachBtn) {
+        selectBeachBtn.addEventListener('click', () => {
+            showScreen(screen1);
+        });
+    }
+
+    if (selectCafeBtn) {
+        selectCafeBtn.addEventListener('click', () => {
+            showScreen(screen1);
+        });
+    }
 
     backTo0.addEventListener('click', () => {
         showScreen(screen0);
