@@ -32,6 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         screen.classList.add('active');
     }
 
+    // Explicitly kill clicks on bottom nav to prevent any weird bubbling
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+        bottomNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+
     startRecallBtn.addEventListener('click', () => {
         showScreen(screen0);
     });
