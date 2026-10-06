@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingState = document.getElementById('loading-state');
     
     const backTo2 = document.getElementById('back-to-2');
-    const refineBtn = document.getElementById('refine-btn');
-    const refinementArea = document.getElementById('refinement-area');
+
     const chips = document.querySelectorAll('.chip');
 
     // Navigation
@@ -112,49 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen(screen2);
     });
 
-    refineBtn.addEventListener('click', () => {
-        refinementArea.classList.remove('hidden');
-        refineBtn.style.display = 'none'; // hide refine button after clicking
-        
-        // Scroll to bottom
-        setTimeout(() => {
-            const resultContent = screen3.querySelector('.result-content');
-            resultContent.scrollTo({
-                top: resultContent.scrollHeight,
-                behavior: 'smooth'
-            });
-        }, 50);
-    });
-
-    // Handle clicking a refinement chip
-    const refinementChips = refinementArea.querySelectorAll('.chip');
-    const resultPhoto = document.querySelector('.result-photo');
-    const contextEvidence = document.querySelector('.context-evidence');
-
-    refinementChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            // Show loading state again
-            showScreen(screen2);
-            loadingState.querySelector('p').textContent = "Refining search...";
-            loadingState.classList.remove('hidden');
-            
-            setTimeout(() => {
-                loadingState.classList.add('hidden');
-                
-                // Update the result to a new photo
-                resultPhoto.src = "assets/goa_street.jpg";
-                contextEvidence.innerHTML = '<span class="material-symbols-outlined">location_on</span> Goa &middot; Café &middot; Outside';
-                
-                // Reset UI state for the new result
-                refinementArea.classList.add('hidden');
-                refineBtn.style.display = 'inline-flex';
-                
-                showScreen(screen3);
-                
-                // Scroll to top
-                const resultContent = screen3.querySelector('.result-content');
-                resultContent.scrollTo(0, 0);
-            }, 1500); // 1.5s artificial delay for effect
-        });
-    });
 });
